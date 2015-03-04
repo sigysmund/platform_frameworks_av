@@ -126,15 +126,18 @@ endif
 
 ifeq ($(BOARD_FIX_NATIVE_COLOR_FORMAT), true)
 LOCAL_CFLAGS += -DNATIVE_COLOR_FORMAT_PATCH
-# Include native color format header path
+# Include native color format header patch
 ifeq ($(TARGET_SOC),exynos4x12)
 LOCAL_C_INCLUDES += \
-        $(TOP)/hardware/samsung_slsi/exynos4/include
+        $(TOP)/device/samsung/exynos4/include
 endif
 endif # ifeq ($(BOARD_FIX_NATIVE_COLOR_FORMAT), true)
 ifeq ($(TARGET_SOC),exynos4x12)
 	LOCAL_CFLAGS += -DSAMSUNG_EXYNOS4x12
 endif
+ifeq ($(BOARD_USE_S3D_SUPPORT), true)
+	LOCAL_CFLAGS += -DS3D_SUPPORT
+endif # ifeq ($(BOARD_USE_S3D_SUPPORT), true)
 
 LOCAL_MODULE:= libstagefright
 
